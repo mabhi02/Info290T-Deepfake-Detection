@@ -1,5 +1,7 @@
 # Info290T-Deepfake-Detection
 
+## Abhijith Varma Mudunuri and Atharva Patel
+
 ## Project Overview
 This project aims to develop and compare methods for detecting AI-generated (deepfake) video frames. With the rise of deepfake technology, distinguishing between real and synthetic media is increasingly important. We implement multiple feature extraction techniques and classification models to identify patterns that differentiate authentic videos from those created using AI manipulation.
 
