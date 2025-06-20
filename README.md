@@ -8,6 +8,7 @@ This project aims to develop and compare methods for detecting AI-generated (dee
 **Team Members:**
 - Abhijith Varma Mudunuri
 - Atharva Jayesh Patel
+- Advisor: Hany Farid & Sarah Barrington
 
 ## Dataset
 We use the Facefusion faceswap diffusion model within the Deepspeak v2 dataset, containing real and AI-generated (fake) face videos. Frames are extracted using InsightFace, resulting in a dataset of approximately 53,000 images, organized into `real` and `fake` categories.
