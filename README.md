@@ -13,13 +13,6 @@ This project aims to develop and compare methods for detecting AI-generated (dee
 ## Dataset
 We use the Facefusion faceswap diffusion model within the Deepspeak v2 dataset, containing real and AI-generated (fake) face videos. Frames are extracted using InsightFace, resulting in a dataset of approximately 53,000 images, organized into `real` and `fake` categories.
 
-### Sample Data
-**Real Frames:**
-![Real Frame 1](img/real/frame_000.jpg) ![Real Frame 2](img/real/frame_001.jpg) ![Real Frame 3](img/real/frame_002.jpg)
-
-**Fake Frames:**
-![Fake Frame 1](img/fake/frame_000.jpg) ![Fake Frame 2](img/fake/frame_001.jpg) ![Fake Frame 3](img/fake/frame_002.jpg)
-
 ## Repository Structure
 
 - **Code/**: Python scripts for feature extraction, data processing, and modeling.
@@ -128,6 +121,32 @@ Each method's results are stored in their respective folders, including:
 1. Explore the `index.ipynb` notebook for a guided overview and code snippets.
 2. Review the `Code/` folder for implementation details of each method.
 3. Visualize results in the respective method folders.
+
+## Conclusion
+
+Our project demonstrates that detecting FaceFusion-generated videos remains a challenging problem requiring multiple complementary approaches. Among our methods, the Temporal Synchronization approach achieved the best results on a small sample, with traditional feature extraction methods showing moderate effectiveness. The substantial overlap between classes across most feature spaces highlights the increasing sophistication of AI generation techniques.
+
+### Performance Summary
+- **HOG + SVM**: 67% accuracy (8/12 correct classifications)
+- **Fourier + SVM**: 63% accuracy (76/120 correct classifications) 
+- **Fourier + Logistic Regression**: 63.3% accuracy (76/120 correct classifications)
+- **Laplacian + SVM**: 60.8% accuracy (73/120 correct classifications)
+- **Laplacian + Logistic Regression**: 63.3% accuracy (76/120 correct classifications)
+- **Temporal Synchronization**: 70% accuracy (7/10 correct classifications, smaller sample)
+- **Vision Transformer**: 54% accuracy (27/50 correct classifications)
+
+Each feature extraction method revealed different aspects of the detection challenge:
+
+- **HOG features** captured gradient and edge information with moderate success (67% accuracy), but showed significant overlap between classes in the visualization space
+- **Laplacian pyramid decomposition** provided multi-scale analysis that revealed some discriminative patterns (60-63% accuracy), but many fake videos still resembled real ones across scales
+- **Temporal synchronization analysis** demonstrated potential (70% accuracy on a small sample), but showed that modern AI can increasingly maintain convincing temporal relationships
+- **Fourier transform analysis** showed substantial overlap in frequency patterns between real and AI content (63% accuracy), indicating sophisticated frequency domain replication
+- **Vision Transformer approach** underperformed expectations (54% accuracy), suggesting that even complex deep learning architectures struggle with the subtle artifacts in modern deepfakes
+
+The consistent finding across all methods is that no single approach provides robust detection, as FaceFusion has become increasingly sophisticated at replicating authentic visual characteristics across multiple domains. The limited accuracy across all approaches (54-70%) demonstrates the fundamental challenge facing deepfake detection systems and highlights the need for continued research in this rapidly evolving field.
+
+### Generalizability Considerations
+A critical limitation of our study is the modest sample size and focus on a single deepfake generation method (FaceFusion). Future work should incorporate more diverse datasets spanning multiple generation algorithms, video qualities, and manipulation types to build more robust and generalizable detection systems.
 
 ## License
 This project is licensed under the MIT License. See the `LICENSE` file for details.
