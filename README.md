@@ -13,6 +13,13 @@ This project aims to develop and compare methods for detecting AI-generated (dee
 ## Dataset
 We use the Facefusion faceswap diffusion model within the Deepspeak v2 dataset, containing real and AI-generated (fake) face videos. Frames are extracted using InsightFace, resulting in a dataset of approximately 53,000 images, organized into `real` and `fake` categories.
 
+### Sample Data
+**Real Frames:**
+![Real Frame 1](img/real/frame_000.jpg) ![Real Frame 2](img/real/frame_001.jpg) ![Real Frame 3](img/real/frame_002.jpg)
+
+**Fake Frames:**
+![Fake Frame 1](img/fake/frame_000.jpg) ![Fake Frame 2](img/fake/frame_001.jpg) ![Fake Frame 3](img/fake/frame_002.jpg)
+
 ## Repository Structure
 
 - **Code/**: Python scripts for feature extraction, data processing, and modeling.
@@ -56,19 +63,66 @@ We use the Facefusion faceswap diffusion model within the Deepspeak v2 dataset, 
 - **index.html**: HTML export of the notebook for easy viewing.
 
 ## Feature Extraction & Detection Methods
-- **Histogram of Oriented Gradients (HOG)**: Captures gradient orientation distributions for shape analysis.
-- **Fourier Transform Analysis**: Examines frequency domain characteristics for manipulation artifacts.
-- **Laplacian Pyramid Decomposition**: Multi-scale analysis of image details.
-- **Temporal Synchronization Analysis**: Consistency of motion between facial regions over time.
-- **Flicker Inconsistency Detection**: Frame-to-frame inconsistencies as manipulation indicators.
-- **Vision Transformer (ViT)**: Deep learning model for image classification.
 
-## Results
+### 1. Histogram of Oriented Gradients (HOG)
+Captures gradient orientation distributions for shape analysis.
+
+**Results:**
+![HOG PCA](HOG/all_pca.png)
+![HOG t-SNE](HOG/all_tsne.png)
+![HOG Feature Importance](HOG/feature_importance.png)
+![HOG Confusion Matrix](HOG/confusion_matrix.png)
+
+### 2. Fourier Transform Analysis
+Examines frequency domain characteristics for manipulation artifacts.
+
+**Results:**
+![Fourier PCA](FOURIER/all_pca.png)
+![Fourier t-SNE](FOURIER/all_tsne.png)
+![Fourier Feature Importance](FOURIER/feature_importance.png)
+![Logistic Regression Confusion Matrix](FOURIER/logisticreg_confusion_matrix.png)
+![SVM Confusion Matrix](FOURIER/svm_confusion_matrix.png)
+
+### 3. Laplacian Pyramid Decomposition
+Multi-scale analysis of image details.
+
+**Results:**
+![Laplacian PCA](LAPLACIAN/all_pca.png)
+![Laplacian t-SNE](LAPLACIAN/all_tsne.png)
+![Laplacian Feature Importance](LAPLACIAN/feature_importance.png)
+![Laplacian Logistic Regression Confusion Matrix](LAPLACIAN/logreg_confusion_matrix.png)
+![Laplacian SVM Confusion Matrix](LAPLACIAN/svm_confusion_matrix.png)
+
+### 4. Temporal Synchronization Analysis
+Consistency of motion between facial regions over time.
+
+**Results:**
+![Synchro PCA](SYNCHRO/pca_visualization.png)
+![Synchro t-SNE](SYNCHRO/tsne_visualization.png)
+![Synchro Feature Importance](SYNCHRO/feature_importance.png)
+![Synchro Confusion Matrix](SYNCHRO/confusion_matrix.png)
+![Synchro ROC Curve](SYNCHRO/roc_curve_comparison.png)
+
+### 5. Flicker Inconsistency Detection
+Frame-to-frame inconsistencies as manipulation indicators.
+
+**Results:**
+![Flicker t-SNE](FLICKER/tsne_visualization.png)
+
+### 6. Vision Transformer (ViT)
+Deep learning model for image classification.
+
+**Results:**
+![ViT Accuracy](VIT/accuracy_plot.png)
+![ViT Loss](VIT/loss_plot.png)
+![ViT Confusion Matrix](VIT/confusion_matrix.png)
+
+## Results Summary
 Each method's results are stored in their respective folders, including:
-- Confusion matrices
-- Feature importance plots
-- Dimensionality reduction visualizations (PCA, t-SNE)
-- Results summaries
+- Confusion matrices showing classification performance
+- Feature importance plots highlighting key discriminative features
+- Dimensionality reduction visualizations (PCA, t-SNE) showing data structure
+- Detailed results summaries with quantitative metrics
 
 ## How to Use
 1. Explore the `index.ipynb` notebook for a guided overview and code snippets.
